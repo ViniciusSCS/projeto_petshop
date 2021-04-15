@@ -9,7 +9,7 @@
         <main>
             <div class="container">
                 <div class="row">
-                    <grid tamanho="4">
+                    <grid tamanho="12">
                         <slot name="principal"/>
                     </grid>
                 </div>
@@ -21,10 +21,24 @@
 
 <script>
 import NavBar from "../components/layouts/NavBar";
+import Grid from "../components/layouts/Grid";
 
 export default {
     name: "LoginTemplate",
-    components: {NavBar}
+    components: {Grid, NavBar},
+    data() {
+        return {
+            usuario: false,
+        }
+    },
+    created() {
+        var self = this
+        var aux = self.$store.getters.getUsuario
+        if (aux) {
+            self.$store.getters.getUsuario
+            self.$router.push('/')
+        }
+    },
 }
 </script>
 

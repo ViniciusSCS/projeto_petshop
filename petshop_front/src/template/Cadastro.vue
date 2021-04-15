@@ -60,9 +60,34 @@
 <script>
 import LoginTemplate from "./LoginTemplate";
 import Grid from "../components/layouts/Grid";
+
 export default {
     name: "Cadastro",
-    components: {Grid, LoginTemplate}
+    components: {Grid, LoginTemplate},
+    data() {
+        return {
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+        }
+    },
+    methods: {
+        cadastro() {
+            var self = this
+            self.$http.post(self.$urlApi + 'cadastro', {
+                name: self.name,
+                email: self.email,
+                password: self.password,
+                password_confirmation: self.password_confirmation,
+            })
+            .then(function (response) {
+                console.log('CADASTRA.: ', response)
+            }).catch(function (error){
+                console.log(error)
+            })
+        }
+    }
 }
 </script>
 

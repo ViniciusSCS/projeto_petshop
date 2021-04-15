@@ -2,14 +2,56 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import Vuex from 'vuex'
+import axios from 'axios'
 import router from './router'
 
+Vue.use(Vuex)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.prototype.$http = axios
+Vue.prototype.$urlApi = 'http://localhost:8000/api/'
+
+
+var store = {
+    state: {
+        pets: [],
+        titulo: 'AC - PetShop',
+        usuario: sessionStorage.getItem('usuario') ?
+            JSON.parse(sessionStorage.getItem('usuario')) : null
+    },
+    getters: {
+        getUsuario: state => {
+            return state.usuario
+        },
+
+        getToken: state => {
+            return state.usuario.token
+        },
+
+        getPets: state => {
+            return state.pets
+        },
+
+        getTitulo: state => {
+            return state.titulo
+        }
+    },
+    mutations: {
+        setUsuario(state, n) {
+            state.usuario = n
+        },
+
+        setPets(state, n) {
+            state.pets = n
+        },
+    },
+}
+
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: {App},
+    template: '<App/>',
+    store: new Vuex.Store(store)
 })

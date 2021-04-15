@@ -78,7 +78,8 @@ class UsuarioController extends Controller
             ->with('pets.especie')
             ->where('id', $user['id'])
             ->get();
-        return $query;
+
+        return ['status' => true, "usuario" => $query];
     }
 
     /**

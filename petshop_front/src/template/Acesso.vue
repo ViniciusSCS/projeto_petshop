@@ -46,9 +46,64 @@
 
 <script>
 import Grid from "../components/layouts/Grid";
+
 export default {
     name: "Acesso",
-    components: {Grid}
+    components: {Grid},
+    data() {
+        return {
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        acessar() {
+            var self = this
+
+            self.$http.post(self.$urlApi + 'login', {
+                email: self.email,
+                password: self.password
+            })
+                .then(function (response) {
+                    if (response.data.status) {
+                        console.log('ACESSO.: ', response.data);
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Usuário ' + response.data.usuario.name + ' logado com sucesso!!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        self.$store.commit('setUsuario', response.data.usuario)
+                        sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario))
+                        self.$router.push('/')
+                    } else if (response.data.status == false && response.data.validacao) {
+                        var erros = '';
+                        for (var e of Object.values(response.data.erros)) {
+                            erros += e + ' ';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Erro: ' + erros,
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Nome de usuário ou senha incorretos. Por favor tente novamente!',
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
+        }
+    }
 }
 </script>
 

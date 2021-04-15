@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PetController extends Controller
 {
@@ -47,9 +48,13 @@ class PetController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function listar(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $query = Pet::where('user_id', '=', DB::raw("'".$user->id."'"))->get();
+
+        return ['status' => true, "pets" =>$query , "usuario" => $user];
     }
 
     /**
