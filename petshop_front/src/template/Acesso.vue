@@ -28,7 +28,11 @@
 
             <div class="row">
                 <grid class="input-field" tamanho="12">
-                    <button class="btn waves-effect waves-light col s12" v-on:click="acessar()">Entrar</button>
+                    <botao acao="entrar"
+                           icone="send"
+                           tamanho="col s12"
+                           v-on:click.native="acessar()">
+                    </botao>
                 </grid>
             </div>
 
@@ -46,10 +50,11 @@
 
 <script>
 import Grid from "../components/layouts/Grid";
+import Botao from "../components/layouts/Botao";
 
 export default {
     name: "Acesso",
-    components: {Grid},
+    components: {Botao, Grid},
     data() {
         return {
             email: '',

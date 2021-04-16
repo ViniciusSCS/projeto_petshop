@@ -33,17 +33,7 @@ class PetController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Lista os pets cadastrados.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -52,9 +42,11 @@ class PetController extends Controller
     {
         $user = $request->user();
 
-        $query = Pet::where('user_id', '=', DB::raw("'".$user->id."'"))->get();
+        $query = Pet::with('especie')
+            ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
+            ->get();
 
-        return ['status' => true, "pets" =>$query , "usuario" => $user];
+        return ['status' => true, "pets" => $query, "usuario" => $user];
     }
 
     /**

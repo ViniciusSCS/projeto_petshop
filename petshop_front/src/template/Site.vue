@@ -10,11 +10,15 @@
         <main>
             <div class="container">
                 <div class="row">
+                    <botao acao="Cadastrar Pet" icone="add" url="/pet_cadastrar"></botao>
+                </div>
+                <div class="row">
                     <grid tamanho="12">
-                        <table>
+                        <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
+                                    <th>Espécie</th>
                                     <th>Raça</th>
                                     <th>Idade</th>
                                 </tr>
@@ -23,13 +27,16 @@
                             <tbody v-if="pets.length > 0">
                                 <tr v-for="pet in pets" :key="pet.id">
                                     <td>{{ pet.nome }}</td>
+                                    <td>{{ pet.especie.descricao }}</td>
                                     <td>{{ pet.raca }}</td>
                                     <td>{{ pet.idade }}</td>
                                 </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td>Nenhum pet cadastrado</td>
+                                    <td></td>
+                                    <td class="">Nenhum pet cadastrado</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -44,10 +51,11 @@
 <script>
 import NavBar from "../components/layouts/NavBar";
 import Grid from "../components/layouts/Grid";
+import Botao from "../components/layouts/Botao";
 
 export default {
     name: "Site",
-    components: {Grid, NavBar},
+    components: {Botao, Grid, NavBar},
     data() {
         return {
             usuario: false,
