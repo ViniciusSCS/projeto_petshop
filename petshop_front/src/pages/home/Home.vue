@@ -1,15 +1,19 @@
 <template>
     <site>
-
+        <span slot="principal">
+            <pets-listar/>
+        </span>
     </site>
 </template>
 
 <script>
 import Site from "../../template/Site";
+import PetsListar from "../pets/PetsListar";
+import Pets from "../pets/Pets";
 
 export default {
     name: "Home",
-    components: {Site},
+    components: {Pets, PetsListar, Site},
     data() {
         return {
             pets: [],
