@@ -66,7 +66,6 @@ export default {
             })
                 .then(function (response) {
                     if (response.data.status) {
-                        console.log('ACESSO.: ', response.data);
                         Swal.fire({
                             position: 'center',
                             icon: 'success',

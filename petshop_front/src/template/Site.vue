@@ -20,11 +20,16 @@
                                 </tr>
                             </thead>
 
-                            <tbody v-for="pet in pets" :key="pet.id">
+                            <tbody v-if="pets.length > 0">
+                                <tr v-for="pet in pets" :key="pet.id">
+                                    <td>{{ pet.nome }}</td>
+                                    <td>{{ pet.raca }}</td>
+                                    <td>{{ pet.idade }}</td>
+                                </tr>
+                            </tbody>
+                            <tbody v-else>
                                 <tr>
-                                    <td>{{pet.nome}}</td>
-                                    <td>{{pet.raca}}</td>
-                                    <td>{{pet.idade}}</td>
+                                    <td>Nenhum pet cadastrado</td>
                                 </tr>
                             </tbody>
                         </table>
