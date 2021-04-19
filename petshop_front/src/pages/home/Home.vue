@@ -7,9 +7,9 @@
 </template>
 
 <script>
+import Pets from "../pets/Pets";
 import Site from "../../template/Site";
 import PetsListar from "../pets/PetsListar";
-import Pets from "../pets/Pets";
 
 export default {
     name: "Home",
