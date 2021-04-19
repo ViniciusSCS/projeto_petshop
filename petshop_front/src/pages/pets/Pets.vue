@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="raca" type="text" class="validate">
-                                <label for="raca">Raça</label>
+                                <label for="raca">Raçao</label>
                             </div>
                             <div class="input-field col s6">
                                 <label>Sexo</label>
