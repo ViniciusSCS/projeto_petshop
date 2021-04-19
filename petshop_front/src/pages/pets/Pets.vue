@@ -25,6 +25,7 @@
                                 <input id="raca" type="text" class="validate">
                                 <label for="raca">Raça</label>
                             </div>
+
                             <div class="input-field col s6">
                                 <label>Sexo</label>
                                 <select class="browser-default">
