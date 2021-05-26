@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->string('raca');
             $table->unsignedBigInteger('especie_id');
             $table->foreign('especie_id')->references('id')->on('especies');
-            $table->string('idade');
+            $table->string('data_nascimento');
             $table->string('peso');
             $table->enum('sexo',['Macho', 'Femea']);
             $table->string('imagem')->nullable();

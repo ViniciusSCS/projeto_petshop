@@ -16,11 +16,11 @@ class Pet extends Model
     protected $fillable = [
         'nome',
         'raca',
-        'idade',
         'peso',
         'sexo',
         'user_id',
         'especie_id',
+        'data_nascimento',
     ];
 
     public function especie()
