@@ -64,12 +64,12 @@ export default {
     components: {Botao, Site},
     data() {
         return {
-            "nome": '',
-            "especie": '',
-            "raca": '',
-            "sexo": '',
-            "data_nascimento": '',
-            "peso": '',
+            nome: '',
+            especie: '',
+            raca: '',
+            sexi: '',
+            data_nascimentp: '',
+            peso: '',
         }
     },
     methods: {
