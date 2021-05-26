@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PetController extends Controller
 {
@@ -17,15 +18,28 @@ class PetController extends Controller
     {
         $data = $request->all();
 
+        $validacao = Validator::make($data, [
+            'nome' => 'required|string',
+            'peso' => 'required|string',
+            'raca' => 'required',
+            'sexo' => 'required|string',
+            'especie' => 'required|string',
+            'data_nascimento' => 'required|string',
+        ]);
+
+        if ($validacao->fails()) {
+            return ['status' => false, 'validacao' => true, "erros" => $validacao->errors()];
+        }
+
         $pet = new Pet();
 
         $pet->nome = $data['nome'];
         $pet->peso = $data['peso'];
-        $pet->raca = $data['raca'];
+        $pet->raca_id = $data['raca'];
         $pet->sexo = $data['sexo'];
-        $pet->idade = $data['idade'];
-        $pet->user_id = $data['user_id'];
-        $pet->especie_id = $data['especie_id'];
+        $pet->user_id = $data['usuario']['id'];
+        $pet->especie_id = $data['especie'];
+        $pet->data_nascimento = $data['data_nascimento'];
 
         $pet->save();
 
@@ -42,7 +56,25 @@ class PetController extends Controller
     {
         $user = $request->user();
 
-        $query = Pet::with('especie')
+        $query = Pet::select(
+            'nome',
+            'especie_id',
+            'raca_id',
+            DB::raw("date_format(data_nascimento, '%d/%m/%Y') as data_nascimento"),
+            DB::raw("
+                CONCAT(
+                    FLOOR(( DATE_FORMAT(NOW(),'%Y%m%d') - DATE_FORMAT(data_nascimento,'%Y%m%d'))/10000), ' ano(s) ',
+                    FLOOR((1200 + DATE_FORMAT(NOW(),'%m%d') - DATE_FORMAT(data_nascimento,'%m%d'))/100) %12, ' mes(es) ',
+                    REPLACE(
+                        (SIGN(DAY(curdate()) - DAY(data_nascimento)))/2 * (DAY(curdate()) - DAY(data_nascimento)) +
+                        (SIGN(DAY(curdate()) - DAY(data_nascimento)))/2 * (DAY(curdate()) - DAY(data_nascimento)),
+                        '.0000', ''
+                    ),' dia(s)'
+                ) as idade"
+            )
+        )
+            ->with('especie')
+            ->with('raca')
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
             ->get();
 

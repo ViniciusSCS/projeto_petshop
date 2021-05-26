@@ -13,10 +13,20 @@
                     </div>
 
                     <div class="row">
-                        <grid class="input-field" tamanho="12">
+                        <grid class="input-field" tamanho="6">
                             <i class="material-icons prefix">mail_outline</i>
                             <input class="validate" id="email" type="email" v-model="email">
                             <label for="email" data-error="wrong" data-success="right">E-mail</label>
+                        </grid>
+
+                        <grid class="input-field" tamanho="6">
+                            <i class="material-icons prefix">accessibility</i>
+                            <label>Tipo de Cadastro</label>
+                            <select class="browser-default" v-model="tipo">
+                                  <option value="" disabled selected></option>
+                                  <option value="1">Cliente</option>
+                                  <option value="2">Veterinário</option>
+                            </select>
                         </grid>
                     </div>
 
@@ -68,6 +78,7 @@ export default {
         return {
             name: '',
             email: '',
+            tipo: '',
             password: '',
             password_confirmation: '',
         }
@@ -78,13 +89,45 @@ export default {
             self.$http.post(self.$urlApi + 'cadastro', {
                 name: self.name,
                 email: self.email,
+                tipo: self.tipo,
                 password: self.password,
                 password_confirmation: self.password_confirmation,
             })
-            .then(function (response) {
-                console.log('CADASTRA.: ', response)
-            }).catch(function (error){
-                console.log(error)
+                .then(function (response) {
+                    if (response.data.status) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Usuário cadastrado com sucesso!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        self.$store.commit('setUsuario', response.data.usuario)
+                        sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario))
+                        self.$router.push('/')
+                    } else if (response.data.status == false && response.data.validacao) {
+                        var erros = '';
+                        for (var e of Object.values(response.data.erros)) {
+                            erros += e + ' ';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Erro: ' + erros,
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Erro ao cadastrar usuário!',
+                        })
+                    }
+                }).catch(function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'ERRO, tente novamente mais tarde!',
+                })
             })
         }
     }

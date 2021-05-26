@@ -15,16 +15,21 @@ class Pet extends Model
      */
     protected $fillable = [
         'nome',
-        'raca',
-        'idade',
+        'raca_id',
         'peso',
         'sexo',
         'user_id',
         'especie_id',
+        'data_nascimento',
     ];
 
     public function especie()
     {
         return $this->hasOne(Especie::class, 'id', 'especie_id');
+    }
+
+    public function raca()
+    {
+        return $this->hasOne(Raca::class, 'id', 'raca_id');
     }
 }

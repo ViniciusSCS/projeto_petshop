@@ -1,5 +1,5 @@
 <template>
-    <button :class="'btn waves-effect waves-light ' + cor + ' ' + tamanho" :to="url">
+    <button :class="'btn waves-effect waves-light ' + cor + ' ' + tamanho" :to="url" :type="tipo">
         {{ acao }}
         <i class="material-icons right">{{ icone }}</i>
     </button>
@@ -11,6 +11,7 @@ export default {
     props: [
         'cor',
         'url',
+        'tipo',
         'acao',
         'icone',
         'tamanho',

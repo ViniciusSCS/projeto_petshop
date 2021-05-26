@@ -1,6 +1,7 @@
 <template>
     <span slot="principal">
         <div class="container">
+            <div class="row"></div>
             <div class="row">
                 <router-link class="btn waves-effect waves-light blue" to="/pet/cadastro">
                     Cadastrar Pet
@@ -12,6 +13,7 @@
                                 <th>Nome</th>
                                 <th>Espécie</th>
                                 <th>Raça</th>
+                                <th>Data Nascimento</th>
                                 <th>Idade</th>
                             </tr>
                         </thead>
@@ -20,7 +22,8 @@
                             <tr v-for="pet in pets" :key="pet.id">
                                 <td>{{ pet.nome }}</td>
                                 <td>{{ pet.especie.descricao }}</td>
-                                <td>{{ pet.raca }}</td>
+                                <td>{{ pet.raca.descricao }}</td>
+                                <td>{{pet.data_nascimento}}</td>
                                 <td>{{ pet.idade }}</td>
                             </tr>
                         </tbody>

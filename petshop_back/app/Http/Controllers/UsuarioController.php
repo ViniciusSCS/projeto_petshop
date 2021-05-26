@@ -44,6 +44,7 @@ class UsuarioController extends Controller
         $data = $request->all();
 
         $validacao = Validator::make($data, [
+            'tipo' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -56,7 +57,7 @@ class UsuarioController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'tipo_id' => $data['tipo_id'],
+            'tipo_id' => $data['tipo'],
             'password' => bcrypt($data['password']),
         ]);
 
