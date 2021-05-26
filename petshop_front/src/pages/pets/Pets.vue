@@ -21,8 +21,11 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="raca" type="text" class="validate" v-model="raca">
-                            <label for="raca">Raça</label>
+                            <select class="browser-default" v-model="raca">
+                                  <option value="" disabled selected></option>
+                                  <option v-for="raca in racas" :key="raca.id" v-bind:value="raca.discricao" >{{raca.descricao}}</option>
+                            </select>
+                            <label>Raça</label>
                         </div>
                         <div class="input-field col s6">
                             <label>Sexo</label>
@@ -62,13 +65,20 @@ import Botao from "../../components/layouts/Botao";
 export default {
     name: "Pets",
     components: {Botao, Site},
+    mounted: function () {
+        var self = this
+
+        this.racas_select();
+
+    },
     data() {
         return {
             nome: '',
             especie: '',
             raca: '',
-            sexi: '',
-            data_nascimentp: '',
+            racas: [],
+            sexo: '',
+            data_nascimento: '',
             peso: '',
         }
     },
@@ -126,6 +136,27 @@ export default {
                     text: 'ERRO, tente novamente mais tarde!',
                 })
             })
+        },
+
+        racas_select: function () {
+            var self = this
+
+            self.$http.get(self.$urlApi + 'raca/select',
+                {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    console.log('RAÇAS', response.data)
+                    if (response.data.status) {
+                        self.racas = response.data.racas
+                    } else
+                        sweetAlert(response.data.erro)
+                })
+                .catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
         }
     }
 }

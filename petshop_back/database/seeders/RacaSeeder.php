@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Raca;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,11 @@ class RacaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('racas')->insert([
+        $racas = [
+            [
+                'especie_id' => 4,
+                'descricao' => 'Raça não Definida (RND)',
+            ],
             [
                 'especie_id' => 1,
                 'descricao' => 'Afghan Hound',
@@ -415,6 +420,10 @@ class RacaSeeder extends Seeder
                 'especie_id' => 1,
                 'descricao' => 'Wolfhound Irlandês'
             ],
-        ]);
+        ];
+
+        foreach ($racas as $raca){
+            Raca::UpdateOrCreate($raca, $raca);
+        }
     }
 }

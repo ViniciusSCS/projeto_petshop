@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Especie;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ class EspecieSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('especies')->insert([
+        $especies = [
             [
                 'descricao' => 'Cachorro',
             ],
@@ -23,7 +24,14 @@ class EspecieSeeder extends Seeder
             ],
             [
                 'descricao' => 'Pássaro'
+            ],
+            [
+                'descricao' => 'Espécie Não Definida'
             ]
-        ]);
+        ];
+
+        foreach ($especies as $especie) {
+            Especie::UpdateOrCreate($especie, $especie);
+        }
     }
 }

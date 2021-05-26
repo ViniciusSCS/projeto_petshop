@@ -16,6 +16,7 @@ class Tipo extends Model
      * @var array
      */
     protected $fillable = [
+        'descricao'
     ];
 
     /**
