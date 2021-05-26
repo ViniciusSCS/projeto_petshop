@@ -3,7 +3,7 @@
         <header>
             <nav-bar cor="deep-orange">
                 <li v-if="usuario">{{ usuario.name }}</li>
-                <li v-if="usuario"><a v-on:click="sair()">Sair</a></li>
+                <li v-if="usuario"><a v-on:click="sair()">Sair <i class="material-icons right">power_settings_new</i></a></li>
             </nav-bar>
         </header>
 

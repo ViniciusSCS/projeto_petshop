@@ -4,6 +4,7 @@
             <div class="row"></div>
             <div class="row">
                 <router-link class="btn waves-effect waves-light blue" to="/pet/cadastro">
+                    <i class="material-icons right">add</i>
                     Cadastrar Pet
                 </router-link>
                 <grid tamanho="12">
