@@ -23,7 +23,7 @@
                         <div class="input-field col s6">
                             <select class="browser-default" v-model="raca">
                                   <option value="" disabled selected></option>
-                                  <option v-for="raca in racas" :key="raca.id" v-bind:value="raca.discricao" >{{raca.descricao}}</option>
+                                  <option v-for="raca in racas" :key="raca.id" v-bind:value="raca.id" >{{raca.descricao}}</option>
                             </select>
                             <label>Raça</label>
                         </div>
@@ -85,7 +85,7 @@ export default {
     methods: {
         salvar() {
             var self = this
-
+            console.log(self.racas);
             self.$http.post(self.$urlApi + 'pet/cadastro', {
                 nome: self.nome,
                 raca: self.raca,
@@ -96,6 +96,7 @@ export default {
                 usuario: self.$store.getters.getUsuario
             }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
+                    console.log('SALVAR', response.data)
                     if (response.data.status) {
                         Swal.fire({
                             position: 'center',
@@ -144,7 +145,6 @@ export default {
             self.$http.get(self.$urlApi + 'raca/select',
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
-                    console.log('RAÇAS', response.data)
                     if (response.data.status) {
                         self.racas = response.data.racas
                     } else

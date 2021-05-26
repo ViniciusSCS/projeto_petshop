@@ -21,7 +21,7 @@ class PetController extends Controller
         $validacao = Validator::make($data, [
             'nome' => 'required|string',
             'peso' => 'required|string',
-            'raca' => 'required|string',
+            'raca' => 'required',
             'sexo' => 'required|string',
             'especie' => 'required|string',
             'data_nascimento' => 'required|string',
@@ -35,7 +35,7 @@ class PetController extends Controller
 
         $pet->nome = $data['nome'];
         $pet->peso = $data['peso'];
-        $pet->raca = $data['raca'];
+        $pet->raca_id = $data['raca'];
         $pet->sexo = $data['sexo'];
         $pet->user_id = $data['usuario']['id'];
         $pet->especie_id = $data['especie'];
@@ -59,7 +59,7 @@ class PetController extends Controller
         $query = Pet::select(
             'nome',
             'especie_id',
-            'raca',
+            'raca_id',
             DB::raw("date_format(data_nascimento, '%d/%m/%Y') as data_nascimento"),
             DB::raw("
                 CONCAT(
@@ -74,6 +74,7 @@ class PetController extends Controller
             )
         )
             ->with('especie')
+            ->with('raca')
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
             ->get();
 

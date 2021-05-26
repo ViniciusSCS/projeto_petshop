@@ -22,7 +22,7 @@
                             <tr v-for="pet in pets" :key="pet.id">
                                 <td>{{ pet.nome }}</td>
                                 <td>{{ pet.especie.descricao }}</td>
-                                <td>{{ pet.raca }}</td>
+                                <td>{{ pet.raca.descricao }}</td>
                                 <td>{{pet.data_nascimento}}</td>
                                 <td>{{ pet.idade }}</td>
                             </tr>
