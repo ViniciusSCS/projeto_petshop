@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Raca;
+use App\Models\Especie;
 use Illuminate\Http\Request;
 
-class RacaController extends Controller
+class EspecieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function select($especie_id)
+    public function select()
     {
-        $query = Raca::where('especie_id', $especie_id)->orWhere('especie_id', 4)->get();
+        $query = Especie::all();
 
-        return ['status' => true, "racas" => $query];
+        return ['status' => true, "especies" => $query];
     }
 
     /**

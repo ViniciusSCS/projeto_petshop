@@ -420,6 +420,110 @@ class RacaSeeder extends Seeder
                 'especie_id' => 1,
                 'descricao' => 'Wolfhound Irlandês'
             ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Abissínio'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'American Shorthair'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Angorá'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Azul Russo'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Bengal'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Brazilian Shorthair'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'British Shorthair'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Burmese'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Chartreux'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Cornish Rex'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Devon Rex'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Egyptian Mau'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'European Shorthair'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Exótico'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Himalaio'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Maine Coon'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Munchkin'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Norwegian Forest'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Oriental'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Persa'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Ragdoll'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Sagrado da Birmânia'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Savannah'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Scottish Fold'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Siamês'
+            ],
+            [
+                'especie_id' => 2,
+                'descricao' => 'Sphynx'
+            ],
         ];
 
         foreach ($racas as $raca){

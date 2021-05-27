@@ -23,7 +23,7 @@ class PetController extends Controller
             'peso' => 'required|string',
             'raca' => 'required',
             'sexo' => 'required|string',
-            'especie' => 'required|string',
+            'especie' => 'required',
             'data_nascimento' => 'required|string',
         ]);
 
@@ -79,17 +79,6 @@ class PetController extends Controller
             ->get();
 
         return ['status' => true, "pets" => $query, "usuario" => $user];
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

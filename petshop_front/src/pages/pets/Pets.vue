@@ -7,11 +7,9 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <label>Espécie</label>
-                            <select class="browser-default" v-model="especie">
+                            <select class="browser-default" v-model="especie" @change="racas_select()">
                                 <option value="" disabled selected></option>
-                                <option value="1">Cachorro</option>
-                                <option value="2">Gato</option>
-                                <option value="3" v-model="especie">Pássaro</option>
+                                <option v-for="especie in especies" :key="especie.id" v-bind:value="especie.id" >{{especie.descricao}}</option>
                             </select>
                         </div>
                         <div class="input-field col s6">
@@ -68,18 +66,21 @@ export default {
     mounted: function () {
         var self = this
 
-        this.racas_select();
+        this.especies_select()
+        // this.racas_select()
 
     },
     data() {
         return {
             nome: '',
-            especie: '',
             raca: '',
-            racas: [],
             sexo: '',
-            data_nascimento: '',
             peso: '',
+            especie: '',
+            data_nascimento: '',
+
+            especies: [],
+            racas: [],
         }
     },
     methods: {
@@ -139,10 +140,30 @@ export default {
             })
         },
 
+        especies_select: function () {
+            var self = this
+
+            self.$http.get(self.$urlApi + 'especie/select',
+                {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    if (response.data.status) {
+                        self.especies = response.data.especies
+                    } else
+                        sweetAlert(response.data.erro)
+                })
+                .catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
+        },
+
         racas_select: function () {
             var self = this
 
-            self.$http.get(self.$urlApi + 'raca/select',
+            self.$http.get(self.$urlApi + 'raca/select/' + self.especie,
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
