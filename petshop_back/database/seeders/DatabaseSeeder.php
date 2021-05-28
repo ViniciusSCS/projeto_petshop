@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             TipoSeeder::class,
             EspecieSeeder::class,
             RacaSeeder::class,
+            VacinaSeeder::class,
         ]);
     }
 }
