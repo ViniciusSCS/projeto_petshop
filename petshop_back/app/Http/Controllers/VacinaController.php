@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacina;
 use Illuminate\Http\Request;
 
 class VacinaController extends Controller
@@ -11,9 +12,11 @@ class VacinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function select()
     {
-        //
+        $query = Vacina::all();
+
+        return $query;
     }
 
     /**

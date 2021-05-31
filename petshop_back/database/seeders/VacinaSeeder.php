@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\VacinaController;
+use App\Models\Vacina;
 use Illuminate\Database\Seeder;
 
 class VacinaSeeder extends Seeder
@@ -30,7 +30,7 @@ class VacinaSeeder extends Seeder
         ];
 
         foreach ($tipos as $tipo) {
-            VacinaController::UpdateOrCreate($tipo, $tipo);
+            Vacina::UpdateOrCreate($tipo, $tipo);
         }
     }
 }

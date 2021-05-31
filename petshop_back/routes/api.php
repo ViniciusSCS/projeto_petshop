@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{EspecieController, PetController, RacaController, UsuarioController};
+use App\Http\Controllers\{
+    PetController,
+    RacaController,
+    VacinaController,
+    EspecieController,
+    UsuarioController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +29,8 @@ Route::middleware('auth:api')->post('/pet/cadastro', [PetController::class, 'cad
 Route::middleware('auth:api')->get('/pet/listar', [PetController::class, 'listar']);
 
 Route::middleware('auth:api')->get('/raca/select/{id}', [RacaController::class, 'select']);
+
 Route::middleware('auth:api')->get('/especie/select', [EspecieController::class, 'select']);
+
+Route::middleware('auth:api')->get('/vacina/select', [VacinaController::class, 'select']);
 
