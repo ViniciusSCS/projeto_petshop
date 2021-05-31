@@ -27,7 +27,10 @@ class EspecieSeeder extends Seeder
             ],
             [
                 'descricao' => 'Espécie Não Definida'
-            ]
+            ],
+            [
+                'descricao' => 'Cavalo'
+            ],
         ];
 
         foreach ($especies as $especie) {

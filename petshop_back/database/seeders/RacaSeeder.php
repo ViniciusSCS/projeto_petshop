@@ -524,6 +524,38 @@ class RacaSeeder extends Seeder
                 'especie_id' => 2,
                 'descricao' => 'Sphynx'
             ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Andaluz'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Campolina'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Cavalo Árabe'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Lusitano'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Mangalarga'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Mangalarga Marchador'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Puro Sangue Inglês'
+            ],
+            [
+                'especie_id' => 5,
+                'descricao' => 'Quarto de Milha'
+            ],
         ];
 
         foreach ($racas as $raca){
