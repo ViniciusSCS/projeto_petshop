@@ -4,10 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import Vuex from 'vuex'
 import axios from 'axios'
+import lodash from 'lodash'
 import router from './router'
 import Datepicker from 'vuejs-datepicker';
 
-Vue.use(Vuex)
+Vue.use(Vuex, lodash)
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios

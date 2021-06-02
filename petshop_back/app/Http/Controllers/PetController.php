@@ -76,7 +76,7 @@ class PetController extends Controller
             ->with('especie')
             ->with('raca')
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
-            ->get();
+            ->paginate(2);
 
         return ['status' => true, "pets" => $query, "usuario" => $user];
     }

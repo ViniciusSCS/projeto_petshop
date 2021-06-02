@@ -24,7 +24,7 @@
                                 <td>{{ pet.nome }}</td>
                                 <td>{{ pet.especie.descricao }}</td>
                                 <td>{{ pet.raca.descricao }}</td>
-                                <td>{{pet.data_nascimento}}</td>
+                                <td>{{ pet.data_nascimento }}</td>
                                 <td>{{ pet.idade }}</td>
                             </tr>
                         </tbody>
@@ -36,7 +36,18 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-center">
+                        <paginacao :source="paginacao"
+                                   @navigate="navigate"/>
+                    </div>
                 </grid>
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active">
+                        <a href="">1</a>
+                    </li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
             </div>
         </div>
     </span>
@@ -47,14 +58,21 @@
 import Site from "../../template/Site";
 import Grid from "../../components/layouts/Grid";
 import Botao from "../../components/layouts/Botao";
+import Paginacao from "../../components/layouts/Paginacao";
 
 export default {
     name: "PetsListar",
-    components: {Botao, Grid, Site},
+    components: {Paginacao, Botao, Grid, Site},
     data() {
         return {
             usuario: false,
             pets: [],
+            paginacao: {},
+        }
+    },
+    methods: {
+        navigate(page){
+            console.log(page)
         }
     },
     created() {
@@ -66,7 +84,8 @@ export default {
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
-                        self.pets = response.data.pets
+                        self.pets = response.data.pets.data
+                        self.paginacao = response.data.pets
                     } else
                         sweetAlert(response.data.erro)
                 })
