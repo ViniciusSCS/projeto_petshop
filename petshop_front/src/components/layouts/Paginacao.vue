@@ -1,10 +1,18 @@
 <template>
     <ul class="pagination">
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li :class="{active: source.current_page == page}" v-for="page in pages">
-            <a href="#" @click="navigate($event, page)">{{ page }}</a>
+        <li :class="{ disabled : source.current_page == 1}">
+            <a href="#" @click="proxPag($event, source.current_page-1)">
+                <i class="material-icons">chevron_left</i>
+            </a>
         </li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        <li :class="{active: source.current_page == page}" v-for="page in pages">
+            <a href="#" @click="nevegacao($event, page)">{{ page }}</a>
+        </li>
+        <li :class="{ disabled : source.current_page == source.last_page}">
+            <a href="#!" @click="nevegacao($event, source.current_page+1)">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
     </ul>
 </template>
 
@@ -22,15 +30,26 @@ export default {
         }
     },
     methods: {
-        navigate(ev, page){
-            ev.preventDefault()
-            this.store.dispatch('navigate', page)
+        nevegacao(event, page) {
+            var self = this
+
+            event.preventDefault()
+            self.$store.dispatch('navegacao', page)
+        },
+
+        proxPag(event, page) {
+            var self = this
+            if(page == 0 || page == self.source.last_page){
+                return
+            }
+            self.navigate(event, page)
         }
     },
     watch: {
         source() {
-            this.pages = lodash.range(1, this.source.last_page + 1)
-            console.log('AQUI', this.pages);
+            var self = this
+
+            self.pages = lodash.range(1, self.source.last_page + 1)
         }
     }
 

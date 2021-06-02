@@ -37,17 +37,9 @@
                         </tbody>
                     </table>
                     <div class="text-center">
-                        <paginacao :source="paginacao"
-                                   @navigate="navigate"/>
+                        <paginacao :source="paginacao" @navegacao="navegacao"/>
                     </div>
                 </grid>
-                <ul class="pagination">
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <li class="active">
-                        <a href="">1</a>
-                    </li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                </ul>
             </div>
         </div>
     </span>
@@ -71,9 +63,28 @@ export default {
         }
     },
     methods: {
-        navigate(page){
-            console.log(page)
-        }
+        navegacao(page){
+            var self = this
+
+            console.log('CLIQUE', page)
+            self.$http.get(self.$urlApi + 'pet/listar?page='+page,
+                {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    if (response.data.status) {
+                        self.pets = response.data.pets.data
+                        self.paginacao = response.data.pets
+                    } else
+                        sweetAlert(response.data.erro)
+                })
+                .catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
+
+        },
     },
     created() {
         var self = this
