@@ -34,15 +34,17 @@ export default {
             var self = this
 
             event.preventDefault()
-            self.$store.dispatch('navegacao', page)
+            self.$emit('navegacao', page)
         },
 
         proxPag(event, page) {
             var self = this
+
             if(page == 0 || page == self.source.last_page){
                 return
             }
-            self.navigate(event, page)
+
+            self.nevegacao(event, page)
         }
     },
     watch: {

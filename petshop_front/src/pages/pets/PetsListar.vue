@@ -37,7 +37,9 @@
                         </tbody>
                     </table>
                     <div class="text-center">
-                        <paginacao :source="paginacao" @navegacao="navegacao"/>
+                        <paginacao :source="paginacao"
+                                   @navegacao="navegacao"
+                        />
                     </div>
                 </grid>
             </div>
@@ -66,7 +68,6 @@ export default {
         navegacao(page){
             var self = this
 
-            console.log('CLIQUE', page)
             self.$http.get(self.$urlApi + 'pet/listar?page='+page,
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
@@ -86,6 +87,7 @@ export default {
 
         },
     },
+
     created() {
         var self = this
         var aux = self.$store.getters.getUsuario

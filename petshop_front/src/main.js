@@ -48,11 +48,6 @@ var store = {
             state.pets = n
         },
     },
-    actions: {
-        nevegacao(context){
-            context.commit('navegacao')
-        }
-    }
 }
 
 new Vue({
