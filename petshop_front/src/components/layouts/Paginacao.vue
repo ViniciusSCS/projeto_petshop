@@ -1,7 +1,7 @@
 <template>
     <ul class="pagination">
         <li :class="{ disabled : source.current_page == 1}">
-            <a href="#" @click="proxPag($event, source.current_page-1)">
+            <a href="#" @click="nextPrev($event, source.current_page-1)">
                 <i class="material-icons">chevron_left</i>
             </a>
         </li>
@@ -9,7 +9,7 @@
             <a href="#" @click="nevegacao($event, page)">{{ page }}</a>
         </li>
         <li :class="{ disabled : source.current_page == source.last_page}">
-            <a href="#!" @click="nevegacao($event, source.current_page+1)">
+            <a href="#!" @click="nextPrev($event, source.current_page+1)">
                 <i class="material-icons">chevron_right</i>
             </a>
         </li>
@@ -37,11 +37,12 @@ export default {
             self.$emit('navegacao', page)
         },
 
-        proxPag(event, page) {
+        nextPrev(event, page) {
             var self = this
 
-            if(page == 0 || page == self.source.last_page){
-                return
+            if(page == 0 || page == self.source.last_page+1){
+                console.log('prox');
+                return;
             }
 
             self.nevegacao(event, page)
