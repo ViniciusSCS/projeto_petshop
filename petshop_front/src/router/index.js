@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Cadastro from "../template/Cadastro";
 import Pets from "../pages/pets/Pets";
+import Procedimentos from "../pages/procedimentos/Procedimentos";
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
             path: '/pet/cadastro',
             name: 'Cadastro',
             component: Pets
+        },
+        {
+            path: '/procedimento/cadastro',
+            name: 'Cadastro',
+            component: Procedimentos
         },
     ]
 })

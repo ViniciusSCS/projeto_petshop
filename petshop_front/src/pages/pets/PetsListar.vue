@@ -7,6 +7,10 @@
                     <i class="material-icons right">add</i>
                     Cadastrar Pet
                 </router-link>
+                <router-link class="btn waves-effect waves-light" to="/procedimento/cadastro">
+                    <i class="material-icons right">add</i>
+                    Cadastrar Procedimento
+                </router-link>
                 <grid tamanho="12">
                     <table class="responsive-table">
                         <thead>
@@ -16,6 +20,7 @@
                                 <th>Raça</th>
                                 <th>Data Nascimento</th>
                                 <th>Idade</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
 
@@ -26,6 +31,11 @@
                                 <td>{{ pet.raca.descricao }}</td>
                                 <td>{{ pet.data_nascimento }}</td>
                                 <td>{{ pet.idade }}</td>
+                                <td>
+                                    <router-link title="Procedimentos" to="/procedimento/cadastro">
+                                        <i class="material-icons right">add</i>
+                                    </router-link>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody v-else>
