@@ -11,9 +11,7 @@
                                     <label>PET</label>
                                     <select class="browser-default">
                                         <option value="" disabled selected></option>
-                                        <option value="1">Pet 1</option>
-                                        <option value="2">Pet 2</option>
-                                        <option value="3">Pet 3</option>
+                                        <option value="1" v-for="pet in pets">{{ pet.nome }}</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
@@ -37,12 +35,10 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <label>Browser Select</label>
+                                    <label>Vacina</label>
                                     <select class="browser-default">
                                         <option value="" disabled selected></option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
+                                        <option v-for="vacina in vacinas">{{vacina.nome}}</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
@@ -57,16 +53,20 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <label>
-                                        <input name="group1" type="radio" value="1"/>
-                                        <span>Castrado</span>
-                                    </label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <label>
-                                        <input name="group1" type="radio" value="1" checked/>
-                                        <span>Não Castrado</span>
-                                    </label>
+                                    <label>CASTRADO</label>
+                                    <div class="row"></div>
+                                    <div class="input-field col s3">
+                                        <label>
+                                            <input name="group1" type="radio" value="1"/>
+                                            <span>Sim</span>
+                                        </label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <label>
+                                            <input name="group1" type="radio" value="1"/>
+                                            <span>Não</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -84,6 +84,20 @@ import Site from "../../template/Site";
 export default {
     name: "Procedimentos",
     components: {Site},
+    data() {
+        return {
+            pets: [
+                {nome: 'PET 1'},
+                {nome: 'PET 2'},
+                {nome: 'PET 3'},
+            ],
+            vacinas: [
+                {nome: 'VACINA 1'},
+                {nome: 'VACINA 2'},
+                {nome: 'VACINA 3'},
+            ]
+        }
+    }
 }
 </script>
 
