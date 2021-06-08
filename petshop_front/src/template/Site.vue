@@ -31,7 +31,7 @@ export default {
         if (aux) {
             self.usuario = self.$store.getters.getUsuario
         } else {
-            self.$router.push('/login')
+            self.$router.push('/login').catch(err => {})
         }
     },
     methods: {
@@ -40,7 +40,7 @@ export default {
             self.$store.commit('setUsuario', null)
             sessionStorage.clear()
             self.usuario = false
-            self.$router.push('/login')
+            self.$router.push('/login').catch(err => {})
         },
     }
 }

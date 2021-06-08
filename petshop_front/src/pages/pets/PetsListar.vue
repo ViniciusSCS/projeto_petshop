@@ -120,7 +120,7 @@ export default {
                     })
                 })
         } else {
-            self.$router.push('/login')
+            self.$router.push('/login').catch(err => {})
         }
     },
 }

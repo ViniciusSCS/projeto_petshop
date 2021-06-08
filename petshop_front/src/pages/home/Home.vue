@@ -26,7 +26,7 @@ export default {
         if (aux) {
             self.usuario = self.$store.getters.getUsuario
         } else {
-            self.$router.push('/login')
+            self.$router.push('/login').catch(err => {})
         }
     },
 }
