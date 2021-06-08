@@ -47,7 +47,7 @@
                     <botao acao="salvar"
                            tipo_icone="fas"
                            icone="save"
-                           tamanho="col s4"
+                           tamanho="s3"
                            v-on:click.native="salvar()">
                     </botao>
                 </div>

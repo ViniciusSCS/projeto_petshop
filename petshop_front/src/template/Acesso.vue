@@ -31,7 +31,7 @@
                     <botao acao="entrar"
                            tipo_icone="fas"
                            icone="paper-plane"
-                           tamanho="col s12"
+                           tamanho="s12"
                            v-on:click.native="acessar()">
                     </botao>
                 </grid>

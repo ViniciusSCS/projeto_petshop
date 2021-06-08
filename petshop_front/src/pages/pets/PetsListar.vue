@@ -3,14 +3,14 @@
         <div class="container">
             <div class="row"></div>
             <div class="row">
-                <router-link class="btn waves-effect waves-light blue" to="/pet/cadastro">
-                    <i class="material-icons right">add</i>
-                    Cadastrar Pet
-                </router-link>
-                <router-link class="btn waves-effect waves-light" to="/procedimento/cadastro">
-                    <i class="material-icons right">add</i>
-                    Cadastrar Procedimento
-                </router-link>
+                <botao acao="Cadastrar Pet"
+                       tipo_icone="fas"
+                       cor="blue"
+                       icone="plus"
+                       tamanho="s3"
+                       url="/pet/cadastro"
+                />
+
                 <grid tamanho="12">
                     <table class="responsive-table">
                         <thead>
@@ -32,9 +32,11 @@
                                 <td>{{ pet.data_nascimento }}</td>
                                 <td>{{ pet.idade }}</td>
                                 <td>
-                                    <router-link title="Procedimentos" :to="'/procedimento/cadastro/'+ pet.id">
-                                        <i class="material-icons right">add</i>
-                                    </router-link>
+                                    <botao tipo_icone="fas"
+                                           icone="clipboard-check"
+                                           titulo="Cadastrar Procedimentos"
+                                           :url="'/procedimento/cadastro/'+ pet.id"
+                                    />
                                 </td>
                             </tr>
                         </tbody>
@@ -75,10 +77,10 @@ export default {
         }
     },
     methods: {
-        navegacao(page){
+        navegacao(page) {
             var self = this
 
-            self.$http.get(self.$urlApi + 'pet/listar?page='+page,
+            self.$http.get(self.$urlApi + 'pet/listar?page=' + page,
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
@@ -120,7 +122,8 @@ export default {
                     })
                 })
         } else {
-            self.$router.push('/login').catch(err => {})
+            self.$router.push('/login').catch(err => {
+            })
         }
     },
 }
