@@ -57,9 +57,7 @@ class PetController extends Controller
         $user = $request->user();
 
         $query = Pet::select(
-            'nome',
-            'especie_id',
-            'raca_id',
+            '*',
             DB::raw("date_format(data_nascimento, '%d/%m/%Y') as data_nascimento"),
             DB::raw("
                 CONCAT(

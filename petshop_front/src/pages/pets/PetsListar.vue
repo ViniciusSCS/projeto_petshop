@@ -32,7 +32,7 @@
                                 <td>{{ pet.data_nascimento }}</td>
                                 <td>{{ pet.idade }}</td>
                                 <td>
-                                    <router-link title="Procedimentos" to="/procedimento/cadastro">
+                                    <router-link title="Procedimentos" :to="'/procedimento/cadastro/'+ pet.id">
                                         <i class="material-icons right">add</i>
                                     </router-link>
                                 </td>
