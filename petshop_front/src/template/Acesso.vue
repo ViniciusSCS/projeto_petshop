@@ -29,7 +29,8 @@
             <div class="row">
                 <grid class="input-field" tamanho="12">
                     <botao acao="entrar"
-                           icone="send"
+                           tipo_icone="fas"
+                           icone="paper-plane"
                            tamanho="col s12"
                            v-on:click.native="acessar()">
                     </botao>

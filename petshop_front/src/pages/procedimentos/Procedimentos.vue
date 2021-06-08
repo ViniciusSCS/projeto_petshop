@@ -98,7 +98,8 @@
                             </div>
                         </div>
                         <botao acao="salvar"
-                               icone="send"
+                               tipo_icone="fas"
+                               icone="save"
                                tamanho="col s4"
                                v-on:click.native="salvar()">
                         </botao>
@@ -113,10 +114,11 @@
 <script>
 import Site from "../../template/Site";
 import Botao from "../../components/layouts/Botao";
+import Icone from "../../components/layouts/Icone";
 
 export default {
     name: "Procedimentos",
-    components: {Botao, Site},
+    components: {Icone, Botao, Site},
     mounted: function () {
         this.pets_select()
     },
