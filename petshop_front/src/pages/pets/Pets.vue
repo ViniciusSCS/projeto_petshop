@@ -64,11 +64,7 @@ export default {
     name: "Pets",
     components: {Botao, Site},
     mounted: function () {
-        var self = this
-
         this.especies_select()
-        // this.racas_select()
-
     },
     data() {
         return {
@@ -86,7 +82,7 @@ export default {
     methods: {
         salvar() {
             var self = this
-            console.log(self.racas);
+
             self.$http.post(self.$urlApi + 'pet/cadastro', {
                 nome: self.nome,
                 raca: self.raca,
@@ -97,7 +93,7 @@ export default {
                 usuario: self.$store.getters.getUsuario
             }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
-                    console.log('SALVAR', response.data)
+
                     if (response.data.status) {
                         Swal.fire({
                             position: 'center',

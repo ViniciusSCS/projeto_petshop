@@ -82,14 +82,15 @@ class PetController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
      */
-    public function edit($id)
+    public function select(Request $request)
     {
-        //
+        $user = $request->user();
+        $query = Pet::where('user_id', '=', DB::raw("'" . $user->id . "'"))->get();
+
+        return ['status' => true, "pets" => $query];
     }
 
     /**

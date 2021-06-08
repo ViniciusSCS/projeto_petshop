@@ -16,7 +16,7 @@ class VacinaController extends Controller
     {
         $query = Vacina::all();
 
-        return $query;
+        return ['status' => true, "vacinas" => $query];
     }
 
     /**

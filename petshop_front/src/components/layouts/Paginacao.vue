@@ -41,7 +41,6 @@ export default {
             var self = this
 
             if(page == 0 || page == self.source.last_page+1){
-                console.log('prox');
                 return;
             }
 
