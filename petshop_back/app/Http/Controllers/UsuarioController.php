@@ -84,10 +84,8 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
      */
     public function editar(Request $request)
     {

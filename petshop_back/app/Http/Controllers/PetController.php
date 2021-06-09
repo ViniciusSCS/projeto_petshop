@@ -47,6 +47,43 @@ class PetController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param $id
+     * @return array
+     */
+    public function editar(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $validacao = Validator::make($data, [
+            'nome' => 'required|string',
+            'peso' => 'required|string',
+            'raca' => 'required',
+            'sexo' => 'required|string',
+            'especie' => 'required',
+            'data_nascimento' => 'required|string',
+        ]);
+
+        if ($validacao->fails()) {
+            return ['status' => false, 'validacao' => true, "erros" => $validacao->errors()];
+        }
+
+        $pet = new Pet();
+
+        $pet->nome = $data['nome'];
+        $pet->peso = $data['peso'];
+        $pet->raca_id = $data['raca'];
+        $pet->sexo = $data['sexo'];
+        $pet->user_id = $data['usuario']['id'];
+        $pet->especie_id = $data['especie'];
+        $pet->data_nascimento = $data['data_nascimento'];
+
+        $pet->save();
+
+        return ['status' => true, "pet" => $pet];
+    }
+
+    /**
      * Lista os pets cadastrados.
      *
      * @param \Illuminate\Http\Request $request
@@ -83,10 +120,13 @@ class PetController extends Controller
      * @param Request $request
      * @return array
      */
-    public function select(Request $request)
+    public function select(Request $request, $id)
     {
+
         $user = $request->user();
-        $query = Pet::where('user_id', '=', DB::raw("'" . $user->id . "'"))->get();
+        $query = Pet::where('id', DB::raw($id))
+            ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
+            ->get();
 
         return ['status' => true, "pets" => $query];
     }

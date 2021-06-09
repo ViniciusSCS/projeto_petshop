@@ -37,6 +37,17 @@
                                            titulo="Cadastrar Procedimentos"
                                            :url="'/procedimento/cadastro/'+ pet.id"
                                     />
+                                    <botao tipo_icone="fas"
+                                           icone="edit"
+                                           titulo="Editar Pet"
+                                           cor="orange"
+                                           :url="'/pet/editar/'+ pet.id"
+                                    />
+                                    <botao tipo_icone="fas"
+                                           icone="cross"
+                                           titulo="Falecido"
+                                           cor="red"
+                                    />
                                 </td>
                             </tr>
                         </tbody>

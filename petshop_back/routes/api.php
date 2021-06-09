@@ -26,7 +26,8 @@ Route::middleware('auth:api')->get('/user', [UsuarioController::class, 'usuario'
 Route::middleware('auth:api')->put('/editar', [UsuarioController::class, 'editar']);
 
 Route::middleware('auth:api')->get('/pet/listar', [PetController::class, 'listar']);
-Route::middleware('auth:api')->get('/pet/select', [PetController::class, 'select']);
+Route::middleware('auth:api')->put('/pet/editar/{id}', [PetController::class, 'editar']);
+Route::middleware('auth:api')->get('/pet/select/{id}', [PetController::class, 'select']);
 Route::middleware('auth:api')->post('/pet/cadastro', [PetController::class, 'cadastro']);
 
 Route::middleware('auth:api')->get('/raca/select/{id}', [RacaController::class, 'select']);

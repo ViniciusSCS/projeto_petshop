@@ -32,6 +32,11 @@ export default new Router({
             component: Pets
         },
         {
+            path: '/pet/editar/:id',
+            name: 'Editar',
+            component: Pets
+        },
+        {
             path: '/procedimento/cadastro/:id',
             name: 'Cadastro',
             component: Procedimentos

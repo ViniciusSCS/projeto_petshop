@@ -10,7 +10,9 @@
                                 <label>PET</label>
                                 <select class="browser-default" v-model="pet" @change="pets_select()">
                                     <option value="" disabled selected></option>
-                                    <option v-for="pet in pets" v-bind:value="pet.id">{{ pet.nome }}</option>
+                                    <option v-for="pet in pets" v-bind:value="pet.id">
+                                        {{ pet.nome }}
+                                    </option>
                                 </select>
                             </div>
                             <div class="input-field col s6">
@@ -27,7 +29,8 @@
                             </div>
                             <div class="input-field col s6">
                                 <label>
-                                    <input name="banho_tosa" type="radio" v-model="banho_tosa" v-bind:value="'Banho e Tosa'"/>
+                                    <input name="banho_tosa" type="radio" v-model="banho_tosa"
+                                           v-bind:value="'Banho e Tosa'"/>
                                     <span>Banho & Tosa</span>
                                 </label>
                             </div>
@@ -126,14 +129,15 @@ export default {
             data_castracao: '',
             descricao_cirurgica: '',
 
-            cirurgia: false,
             castrado: false,
+            cirurgia: false,
             banho_tosa: false,
 
             pets: [],
-            vacinas: []
+            vacinas: [],
         }
     },
+
     methods: {
         salvar() {
             var self = this
@@ -152,6 +156,7 @@ export default {
             self.limpar()
 
         },
+
         limpar() {
             var self = this
             self.pet = ''
@@ -163,10 +168,11 @@ export default {
             self.data_castracao = ''
             self.descricao_cirurgica = ''
         },
+
         pets_select: function () {
             var self = this
 
-            self.$http.get(self.$urlApi + 'pet/select',
+            self.$http.get(self.$urlApi + 'pet/select/1',
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
@@ -182,6 +188,7 @@ export default {
                     })
                 })
         },
+
         vacinas_select: function () {
             var self = this
 
