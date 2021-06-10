@@ -53,6 +53,7 @@ class PetController extends Controller
      */
     public function editar(Request $request, $id)
     {
+        $pet = Pet::find($id);
         $data = $request->all();
 
         $validacao = Validator::make($data, [
@@ -68,17 +69,17 @@ class PetController extends Controller
             return ['status' => false, 'validacao' => true, "erros" => $validacao->errors()];
         }
 
-        $pet = new Pet();
+        $petUp = new Pet();
 
-        $pet->nome = $data['nome'];
-        $pet->peso = $data['peso'];
-        $pet->raca_id = $data['raca'];
-        $pet->sexo = $data['sexo'];
-        $pet->user_id = $data['usuario']['id'];
-        $pet->especie_id = $data['especie'];
-        $pet->data_nascimento = $data['data_nascimento'];
+        $petUp->nome = $data['nome'];
+        $petUp->peso = $data['peso'];
+        $petUp->raca_id = $data['raca'];
+        $petUp->sexo = $data['sexo'];
+        $petUp->user_id = $data['usuario']['id'];
+        $petUp->especie_id = $data['especie'];
+        $petUp->data_nascimento = $data['data_nascimento'];
 
-        $pet->save();
+        $petUp->save();
 
         return ['status' => true, "pet" => $pet];
     }

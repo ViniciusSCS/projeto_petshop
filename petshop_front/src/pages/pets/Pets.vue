@@ -65,7 +65,13 @@ export default {
     name: "Pets",
     components: {Botao, Site},
     mounted: function () {
+        this.editar()
         this.especies_select()
+    },
+    created() {
+        var self = this
+        var aux = self.$store.getters.getPetsEditar
+        console.log('Animal Selecionado', aux)
     },
     data() {
         return {
@@ -135,6 +141,12 @@ export default {
                     text: 'ERRO, tente novamente mais tarde!',
                 })
             })
+        },
+
+        editar(){
+            var self = this
+
+            console.log('EDITAR')
         },
 
         especies_select: function () {
