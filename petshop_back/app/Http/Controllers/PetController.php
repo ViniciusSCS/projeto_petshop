@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class PetController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Cadastra Pets
      *
      * @return \Illuminate\Http\Response
      */
@@ -47,6 +47,8 @@ class PetController extends Controller
     }
 
     /**
+     * Edita pets por id
+     *
      * @param Request $request
      * @param $id
      * @return array
@@ -56,10 +58,11 @@ class PetController extends Controller
         $pet = Pet::find($id);
 
         return ['status' => true, "pet" => $pet];
-
     }
 
     /**
+     * Atualiza pet por id
+     *
      * @param Request $request
      * @param $id
      * @return array
@@ -86,8 +89,6 @@ class PetController extends Controller
         $pet->update($data);
 
         return ['status' => true, "pet" => $pet];
-
-
     }
 
     /**
@@ -124,30 +125,19 @@ class PetController extends Controller
     }
 
     /**
+     * Seleciona pets
+     *
      * @param Request $request
      * @return array
      */
     public function select(Request $request, $id)
     {
-
         $user = $request->user();
         $query = Pet::where('id', DB::raw($id))
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
             ->get();
 
         return ['status' => true, "pets" => $query];
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
