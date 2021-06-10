@@ -41,7 +41,7 @@
                                            icone="edit"
                                            titulo="Editar Pet"
                                            cor="orange"
-                                           :url="'/pet/editar/'+ pet.id"
+                                           v-on:click.native="editar(pet.id)"
                                     />
                                     <botao tipo_icone="fas"
                                            icone="cross"
@@ -109,6 +109,26 @@ export default {
                 })
 
         },
+
+        editar(id) {
+            var self = this
+
+            self.$http.get(self.$urlApi + 'pet/editar/' + id,
+                {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    self.pet = response.data.pet
+                    self.$store.commit('setPets', response.data.pet)
+                    self.$router.push('/pet/editar/' + id)
+                })
+                .catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
+
+        }
     },
 
     created() {

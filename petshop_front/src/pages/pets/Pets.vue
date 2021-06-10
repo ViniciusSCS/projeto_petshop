@@ -2,14 +2,16 @@
     <site>
         <span slot="principal">
             <div class="container">
-                <h2>Cadastrar Pet</h2>
+                <h2 v-if="!pet">Cadastrar Pet</h2>
+                <h2 v-if="pet">Atualizar Pet</h2>
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s6">
                             <label>Espécie</label>
                             <select class="browser-default" v-model="especie" @change="racas_select()">
                                 <option value="" disabled selected></option>
-                                <option v-for="especie in especies" :key="especie.id" v-bind:value="especie.id" >{{especie.descricao}}</option>
+                                <option v-for="especie in especies" :key="especie.id"
+                                        v-bind:value="especie.id">{{ especie.descricao }}</option>
                             </select>
                         </div>
                         <div class="input-field col s6">
@@ -21,7 +23,8 @@
                         <div class="input-field col s6">
                             <select class="browser-default" v-model="raca">
                                   <option value="" disabled selected></option>
-                                  <option v-for="raca in racas" :key="raca.id" v-bind:value="raca.id" >{{raca.descricao}}</option>
+                                  <option v-for="raca in racas" :key="raca.id"
+                                          v-bind:value="raca.id">{{ raca.descricao }}</option>
                             </select>
                             <label>Raça</label>
                         </div>
@@ -29,8 +32,8 @@
                             <label>Sexo</label>
                             <select class="browser-default" v-model="sexo">
                                   <option value="" disabled selected></option>
-                                  <option value="Macho">Macho</option>
-                                  <option value="Fêmea">Fêmea</option>
+                                  <option v-bind:value="'Macho'">Macho</option>
+                                  <option v-bind:value="'Femea'">Fêmea</option>
                             </select>
                         </div>
                     </div>
@@ -48,8 +51,17 @@
                            tipo_icone="fas"
                            icone="save"
                            tamanho="s3"
-                           v-on:click.native="salvar()">
-                    </botao>
+                           v-on:click.native="salvar()"
+                           v-if="!pet"
+                    />
+                    <botao acao="Atualizar"
+                           cor="orange"
+                           tipo_icone="fas"
+                           icone="save"
+                           tamanho="s3"
+                           v-on:click.native="salvar()"
+                           v-if="pet"
+                    />
                 </div>
             </div>
         </span>
@@ -60,18 +72,32 @@
 <script>
 import Site from "../../template/Site";
 import Botao from "../../components/layouts/Botao";
+import Login from "../login/Login";
 
 export default {
     name: "Pets",
     components: {Botao, Site},
-    mounted: function () {
-        this.editar()
-        this.especies_select()
-    },
     created() {
         var self = this
-        var aux = self.$store.getters.getPetsEditar
-        console.log('Animal Selecionado', aux)
+
+        var aux = self.$store.getters.getPets
+        if (aux.id != null) {
+            self.pet = self.$store.getters.getPets
+            self.nome = self.pet.nome
+            self.sexo = self.pet.sexo
+            self.peso = self.pet.peso
+            self.raca = self.pet.raca_id
+            self.especie = self.pet.especie_id
+            self.data_nascimento = self.pet.data_nascimento
+        }
+    },
+    mounted: function () {
+        this.especies_select()
+        if (this.pet != false)
+            this.racas_select()
+        else
+            this.clear()
+
     },
     data() {
         return {
@@ -82,8 +108,10 @@ export default {
             especie: '',
             data_nascimento: '',
 
-            especies: [],
+            pet: false,
+
             racas: [],
+            especies: [],
         }
     },
     methods: {
@@ -143,10 +171,15 @@ export default {
             })
         },
 
-        editar(){
+        clear(){
             var self = this
 
-            console.log('EDITAR')
+            self.nome = ''
+            self.raca = ''
+            self.sexo = ''
+            self.peso = ''
+            self.especie = ''
+            self.data_nascimento = ''
         },
 
         especies_select: function () {
