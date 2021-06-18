@@ -2,8 +2,7 @@
     <site>
         <span slot="principal">
             <div class="container">
-                <h2 v-if="!pet">Cadastrar Pet</h2>
-                <h2 v-if="pet">Atualizar Pet</h2>
+                <h2>{{ pet ? "Atualizar Pet" : "Cadastrar Pet" }}</h2>
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s6">
@@ -53,6 +52,14 @@
                            tamanho="s3"
                            v-on:click.native="salvar()"
                            v-if="!pet"
+                    />
+                    <botao acao="voltar"
+                           cor=""
+                           tipo_icone="fas"
+                           icone="arrow-left"
+                           tamanho="s3"
+                           url="/"
+                           v-on:click.native="clear()"
                     />
                     <botao acao="Atualizar"
                            cor="orange"
@@ -173,6 +180,8 @@ export default {
 
         clear(){
             var self = this
+
+            self.pet = false
 
             self.nome = ''
             self.raca = ''
