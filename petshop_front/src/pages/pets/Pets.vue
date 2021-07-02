@@ -147,7 +147,7 @@ export default {
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'Pet cadastrado com sucesso!',
+                                title: 'Pet atualizado com sucesso!',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
