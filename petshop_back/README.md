@@ -64,5 +64,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## CODE
 
 composer require laravel/passport
+
 php artisan migrate
+
 php artisan passport:install
