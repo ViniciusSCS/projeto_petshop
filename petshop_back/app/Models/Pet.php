@@ -5,6 +5,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Pet
+ *
+ * @autor Vinícius Sarmento Costa Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 02/07/2021 - 13:51
+ * @package App\Models
+ */
 class Pet extends Model
 {
     protected $primaryKey = 'id';

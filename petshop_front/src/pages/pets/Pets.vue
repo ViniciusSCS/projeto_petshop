@@ -87,15 +87,19 @@ export default {
     created() {
         var self = this
 
-        var aux = self.$store.getters.getPets
-        if (aux.id != null) {
-            self.pet = self.$store.getters.getPets
-            self.nome = self.pet.nome
-            self.sexo = self.pet.sexo
-            self.peso = self.pet.peso
-            self.raca = self.pet.raca_id
-            self.especie = self.pet.especie_id
-            self.data_nascimento = self.pet.data_nascimento
+        var verificaRota = self.currentRoute
+
+        if (verificaRota.match(/editar.*/)) {
+            var aux = self.$store.getters.getPets
+            if (aux.id != null) {
+                self.pet = self.$store.getters.getPets
+                self.nome = self.pet.nome
+                self.sexo = self.pet.sexo
+                self.peso = self.pet.peso
+                self.raca = self.pet.raca_id
+                self.especie = self.pet.especie_id
+                self.data_nascimento = self.pet.data_nascimento
+            }
         }
     },
     mounted: function () {
@@ -114,6 +118,7 @@ export default {
             peso: '',
             especie: '',
             data_nascimento: '',
+            currentRoute: window.location.pathname,
 
             pet: false,
 
@@ -125,57 +130,112 @@ export default {
         salvar() {
             var self = this
 
-            self.$http.post(self.$urlApi + 'pet/cadastro', {
-                nome: self.nome,
-                raca: self.raca,
-                especie: self.especie,
-                sexo: self.sexo,
-                peso: self.peso,
-                data_nascimento: self.data_nascimento,
-                usuario: self.$store.getters.getUsuario
-            }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
-                .then(function (response) {
+            if(self.currentRoute.match(/editar.*/)){
+                console.log("atualiza", self.pet);
+                self.$http.post(self.$urlApi + 'pet/atualizar/' + self.pet.id, {
+                    nome: self.nome,
+                    raca: self.raca,
+                    especie: self.especie,
+                    sexo: self.sexo,
+                    peso: self.peso,
+                    data_nascimento: self.data_nascimento,
+                    usuario: self.$store.getters.getUsuario
+                }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                    .then(function (response) {
 
-                    if (response.data.status) {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Pet cadastrado com sucesso!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        self.nome = ''
-                        self.raca = ''
-                        self.especie = ''
-                        self.sexo = ''
-                        self.peso = ''
-                        self.data_nascimento = ''
-                        self.$store.commit('setPets', response.data)
-                        self.$router.push('/')
-                    } else if (response.data.status == false && response.data.validacao) {
-                        var erros = '';
-                        for (var e of Object.values(response.data.erros)) {
-                            erros += e + ' ';
+                        if (response.data.status) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Pet cadastrado com sucesso!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            self.nome = ''
+                            self.raca = ''
+                            self.especie = ''
+                            self.sexo = ''
+                            self.peso = ''
+                            self.data_nascimento = ''
+                            self.$store.commit('setPets', response.data)
+                            self.$router.push('/')
+                        } else if (response.data.status == false && response.data.validacao) {
+                            var erros = '';
+                            for (var e of Object.values(response.data.erros)) {
+                                erros += e + ' ';
+                            }
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Erro: ' + erros,
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Erro ao cadastrar pet!',
+                            })
                         }
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Erro: ' + erros,
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Erro ao cadastrar pet!',
-                        })
-                    }
-                }).catch(function (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'ERRO, tente novamente mais tarde!',
+                    }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
                 })
-            })
+            } else {
+                self.$http.post(self.$urlApi + 'pet/cadastro', {
+                    nome: self.nome,
+                    raca: self.raca,
+                    especie: self.especie,
+                    sexo: self.sexo,
+                    peso: self.peso,
+                    data_nascimento: self.data_nascimento,
+                    usuario: self.$store.getters.getUsuario
+                }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                    .then(function (response) {
+
+                        if (response.data.status) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Pet cadastrado com sucesso!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            self.nome = ''
+                            self.raca = ''
+                            self.especie = ''
+                            self.sexo = ''
+                            self.peso = ''
+                            self.data_nascimento = ''
+                            self.$store.commit('setPets', response.data)
+                            self.$router.push('/')
+                        } else if (response.data.status == false && response.data.validacao) {
+                            var erros = '';
+                            for (var e of Object.values(response.data.erros)) {
+                                erros += e + ' ';
+                            }
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Erro: ' + erros,
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Erro ao cadastrar pet!',
+                            })
+                        }
+                    }).catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
+            }
         },
 
         clear(){

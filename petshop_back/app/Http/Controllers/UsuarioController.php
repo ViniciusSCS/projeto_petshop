@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-
+/**
+ * Class UsuarioController
+ *
+ * @autor Vinícius Sarmento Costa Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 02/07/2021 - 13:50
+ * @package App\Http\Controllers
+ */
 class UsuarioController extends Controller
 {
     public function login(Request $request)

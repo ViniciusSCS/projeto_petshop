@@ -8,7 +8,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
+/**
+ * Class User
+ *
+ * @autor Vinícius Sarmento Costa Siqueira
+ * @link https://github.com/ViniciusSCS
+ * @date 02/07/2021 - 13:50
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
