@@ -53,14 +53,6 @@
                            v-on:click.native="salvar()"
                            v-if="!pet"
                     />
-                    <botao acao="voltar"
-                           cor=""
-                           tipo_icone="fas"
-                           icone="arrow-left"
-                           tamanho="s3"
-                           url="/"
-                           v-on:click.native="clear()"
-                    />
                     <botao acao="Atualizar"
                            cor="orange"
                            tipo_icone="fas"
@@ -68,6 +60,14 @@
                            tamanho="s3"
                            v-on:click.native="salvar()"
                            v-if="pet"
+                    />
+                    <botao acao="voltar"
+                           cor=""
+                           tipo_icone="fas"
+                           icone="arrow-left"
+                           tamanho="s3"
+                           url="/"
+                           v-on:click.native="clear()"
                     />
                 </div>
             </div>
@@ -151,12 +151,7 @@ export default {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            self.nome = ''
-                            self.raca = ''
-                            self.especie = ''
-                            self.sexo = ''
-                            self.peso = ''
-                            self.data_nascimento = ''
+                            this.clear()
                             self.$store.commit('setPets', response.data)
                             self.$router.push('/')
                         } else if (response.data.status == false && response.data.validacao) {
@@ -203,12 +198,7 @@ export default {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            self.nome = ''
-                            self.raca = ''
-                            self.especie = ''
-                            self.sexo = ''
-                            self.peso = ''
-                            self.data_nascimento = ''
+                            this.clear()
                             self.$store.commit('setPets', response.data)
                             self.$router.push('/')
                         } else if (response.data.status == false && response.data.validacao) {
