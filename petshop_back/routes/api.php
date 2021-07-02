@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     VacinaController,
     EspecieController,
     UsuarioController,
+    ProcedimentoController,
 };
 
 /*
@@ -36,4 +37,7 @@ Route::middleware('auth:api')->get('/raca/select/{id}', [RacaController::class, 
 Route::middleware('auth:api')->get('/especie/select', [EspecieController::class, 'select']);
 
 Route::middleware('auth:api')->get('/vacina/select', [VacinaController::class, 'select']);
+
+route::middleware('auth:api')->get('/procedimento/listar', [ProcedimentoController::class, 'listar']);
+route::middleware('auth:api')->post('/procedimento/cadastrar', [ProcedimentoController::class, 'create']);
 

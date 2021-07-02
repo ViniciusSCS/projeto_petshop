@@ -17,12 +17,12 @@ class CreateProcedimentosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_created');
             $table->unsignedBigInteger('pet_id');
-            $table->unsignedBigInteger('vacina_id');
-            $table->unsignedBigInteger('cirurgia_id');
-            $table->string('data_castracao');
-            $table->string('descricao_cirurgica');
-            $table->enum('banho_tosa',['Banho', 'Tosa', 'Banho e Tosa']);
-            $table->enum('castrado',['Sim', 'Não']);
+            $table->unsignedBigInteger('vacina_id')->nullable();
+            $table->unsignedBigInteger('cirurgia_id')->nullable();
+            $table->string('data_castracao')->nullable();
+            $table->string('descricao_cirurgica')->nullable();
+            $table->enum('banho_tosa',['Banho', 'Tosa', 'Banho e Tosa'])->nullable();
+            $table->enum('castrado',['Sim', 'Não'])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

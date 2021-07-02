@@ -24,9 +24,9 @@ class Pet extends Model
      */
     protected $fillable = [
         'nome',
-        'raca_id',
         'peso',
         'sexo',
+        'raca_id',
         'user_id',
         'especie_id',
         'data_nascimento',
@@ -40,5 +40,10 @@ class Pet extends Model
     public function raca()
     {
         return $this->hasOne(Raca::class, 'id', 'raca_id');
+    }
+
+    public function procedimento()
+    {
+        return $this->hasMany(Procedimento::class, 'pet_id', 'id');
     }
 }

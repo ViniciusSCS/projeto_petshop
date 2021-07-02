@@ -126,6 +126,7 @@ class PetController extends Controller
         )
             ->with('especie')
             ->with('raca')
+            ->with('procedimento')
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
             ->paginate(10);
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Procedimento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class ProcedimentoController
@@ -14,24 +16,34 @@ use Illuminate\Http\Request;
  */
 class ProcedimentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = $request->all();
+
+        return $data;
+
+
+        $procedimento = new Procedimento();
+
+        $procedimento->pet_id = 1;
+        $procedimento->user_id = 1;
+        $procedimento->castrado = "Sim";
+        $procedimento->vacina_id = null;
+        $procedimento->banho_tosa = null;
+        $procedimento->cirurgia_id = null;
+        $procedimento->user_created = 1;
+        $procedimento->data_castracao = "2020-11-29";
+        $procedimento->descricao_cirurgica = null;
+
+        $procedimento->save();
+
+        return ['status' => true, "procedimento" => $procedimento];
+
     }
 
     /**
