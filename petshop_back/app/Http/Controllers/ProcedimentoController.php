@@ -44,14 +44,14 @@ class ProcedimentoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
-    public function store(Request $request)
+    public function list(Request $request)
     {
-        //
+        $query = Procedimento::with('dono_pet')->get();
+
+        return ['status' => true, "procedimento" => $query];
+
     }
 
     /**

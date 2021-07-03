@@ -124,9 +124,12 @@ class PetController extends Controller
                 ) as idade"
             )
         )
+            ->with('dono_pet')
             ->with('especie')
             ->with('raca')
             ->with('procedimento')
+            ->with('procedimento.dono_pet')
+            ->with('procedimento.veterinario_pet')
             ->where('user_id', '=', DB::raw("'" . $user->id . "'"))
             ->paginate(10);
 

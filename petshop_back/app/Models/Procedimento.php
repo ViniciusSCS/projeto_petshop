@@ -24,4 +24,14 @@ class Procedimento extends Model
         'data_castracao',
         'descricao_cirurgia',
     ];
+
+    public function dono_pet()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function veterinario_pet()
+    {
+        return $this->hasOne(User::class, 'id', 'user_created');
+    }
 }
