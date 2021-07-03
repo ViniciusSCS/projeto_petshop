@@ -150,7 +150,6 @@ export default {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            this.clear()
                             self.$store.commit('setPets', response.data)
                             self.$router.push('/')
                         } else if (response.data.status == false && response.data.validacao) {
