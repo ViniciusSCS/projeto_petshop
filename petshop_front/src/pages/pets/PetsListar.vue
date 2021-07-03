@@ -35,7 +35,7 @@
                                     <botao tipo_icone="fas"
                                            icone="clipboard-check"
                                            titulo="Cadastrar Procedimentos"
-                                           :url="'/procedimento/cadastro/'+ pet.id"
+                                           v-on:click.native="procedimento(pet.id)"
                                     />
                                     <botao tipo_icone="fas"
                                            icone="edit"
@@ -127,10 +127,28 @@ export default {
                         text: 'ERRO, tente novamente mais tarde!',
                     })
                 })
+        },
+
+        procedimento(id) {
+            var self = this
+
+            self.$http.get(self.$urlApi + 'pet/editar/' + id,
+                {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    self.pet = response.data.pet
+                    self.$store.commit('setPets', response.data.pet)
+                    self.$router.push('/procedimento/cadastro/' + id)
+                })
+                .catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'ERRO, tente novamente mais tarde!',
+                    })
+                })
 
         }
     },
-
     created() {
         var self = this
         var aux = self.$store.getters.getUsuario

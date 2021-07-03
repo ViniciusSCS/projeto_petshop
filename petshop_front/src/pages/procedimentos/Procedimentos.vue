@@ -10,7 +10,7 @@
                                 <label>PET</label>
                                 <select class="browser-default" v-model="pet" @change="pets_select()">
                                     <option value="" disabled selected></option>
-                                    <option v-for="pet in pets" v-bind:value="pet.id">
+                                    <option v-for="pet in pet_selecionado" v-bind:value="pet.id">
                                         {{ pet.nome }}
                                     </option>
                                 </select>
@@ -101,6 +101,15 @@
                                tamanho="s3"
                                v-on:click.native="salvar()">
                         </botao>
+
+                        <botao acao="voltar"
+                               cor=""
+                               tipo_icone="fas"
+                               icone="arrow-left"
+                               tamanho="s3"
+                               url="/"
+                               v-on:click.native="clear()"
+                        />
                     </div>
                 </div>
             </div>
@@ -117,23 +126,28 @@ import Icone from "../../components/layouts/Icone";
 export default {
     name: "Procedimentos",
     components: {Icone, Botao, Site},
+    created() {
+        var self = this
+
+        self.pet = self.$store.getters.getPets
+    },
     mounted: function () {
         this.pets_select()
         this.vacinas_select()
     },
     data() {
         return {
-            pet: '',
             vacina: '',
             data_vacina: '',
             data_castracao: '',
             descricao_cirurgica: '',
 
+            pet: false,
             castrado: false,
             cirurgia: false,
-            banho_tosa: false,
+            banho_tosa: null,
 
-            pets: [],
+            pet_selecionado: [],
             vacinas: [],
         }
     },
@@ -141,23 +155,48 @@ export default {
     methods: {
         salvar() {
             var self = this
-            var data = {
-                'pet_id': self.pet,
-                'vacina': self.vacina,
-                'castrado': self.castrado,
-                'cirurgia': self.cirurgia,
-                'banho_tosa': self.banho_tosa,
-                'data_vacina': self.data_vacina,
-                'data_castracao': self.data_castracao,
-                'descricao_cirurgia': self.descricao_cirurgica,
-            }
 
-            console.log('SALVAR', data)
-            self.limpar()
+            self.$http.post(self.$urlApi + 'procedimento/cadastro', {
+                pet_id: self.pet,
+                vacina: self.vacina,
+                castrado: self.castrado,
+                cirurgia: self.cirurgia,
+                banho_tosa: self.banho_tosa,
+                data_vacina: self.data_vacina,
+                data_castracao: self.data_castracao,
+                descricao_cirurgia: self.descricao_cirurgica,
+                user_id: self.$store.getters.getUsuario,
+                user_created: self.$store.getters.getUsuario
+            }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
+                .then(function (response) {
+                    if (response.data.status) {
+                        console.log('DEU CERTO', response.data.status)
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Procedimento cadastrado com sucesso!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        self.$router.push('/')
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Erro ao cadastrar procedimento!',
+                        })
+                    }
+                }).catch(function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'ERRO, tente novamente mais tarde!',
+                })
+            })
 
         },
 
-        limpar() {
+        clear() {
             var self = this
             self.pet = ''
             self.vacina = ''
@@ -172,11 +211,11 @@ export default {
         pets_select: function () {
             var self = this
 
-            self.$http.get(self.$urlApi + 'pet/select/1',
+            self.$http.get(self.$urlApi + 'pet/select/4',
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
-                        self.pets = response.data.pets
+                        self.pet_selecionado = response.data.pets
                     } else
                         sweetAlert(response.data.erro)
                 })

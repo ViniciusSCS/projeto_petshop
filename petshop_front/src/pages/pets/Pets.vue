@@ -131,7 +131,6 @@ export default {
             var self = this
 
             if(self.currentRoute.match(/editar.*/)){
-                console.log("atualiza", self.pet);
                 self.$http.post(self.$urlApi + 'pet/atualizar/' + self.pet.id, {
                     nome: self.nome,
                     raca: self.raca,
