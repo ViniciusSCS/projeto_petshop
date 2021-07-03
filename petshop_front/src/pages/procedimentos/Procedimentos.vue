@@ -170,7 +170,6 @@ export default {
             }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
-                        console.log('DEU CERTO', response.data.status)
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
