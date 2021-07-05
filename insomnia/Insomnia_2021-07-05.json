@@ -1,1 +1,507 @@
-undefined
+_type: export
+__export_format: 4
+__export_date: 2021-07-05T10:48:36.016Z
+__export_source: insomnia.desktop.app:v2021.4.0
+resources:
+  - _id: req_a640d582abc94a0da592866aa54f7e7c
+    parentId: fld_16314bb2604c44bba52a2eb7448cd6f1
+    modified: 1625250812255
+    created: 1625250736421
+    url: "{{ _.petshop_vacina }}select"
+    name: Listar Vacina
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_1d0be2f0edca4430a5690d93ce0b96d3
+    authentication: {}
+    metaSortKey: -1625250736467
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_16314bb2604c44bba52a2eb7448cd6f1
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1625250701004
+    created: 1625250701004
+    name: PetShop - Vacina
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1625250701004
+    _type: request_group
+  - _id: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    parentId: null
+    modified: 1618512420685
+    created: 1618512420685
+    name: Projeto Pet
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_71d3f4864206440d9f85cdc106e0d874
+    parentId: fld_0bb120b55c7547378442de93aef6f7f9
+    modified: 1625267343873
+    created: 1625251735324
+    url: "{{ _.petshop_procedimento }}cadastro"
+    name: Cadastrar Procedimento
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: ""
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        id: pair_5bc3361db2784170ac4e0bf4539d35cb
+      - name: Content-Type
+        value: application/json
+        id: pair_25d33b317d10497d9239dd92289a58b4
+    authentication: {}
+    metaSortKey: -1625251735372
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_0bb120b55c7547378442de93aef6f7f9
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1625250713937
+    created: 1625250234201
+    name: PetShop - Procedimento
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1625250234201
+    _type: request_group
+  - _id: req_a2adca81d31442398ef2e3adbccd8afb
+    parentId: fld_0bb120b55c7547378442de93aef6f7f9
+    modified: 1625272388983
+    created: 1625250249212
+    url: "{{ _.petshop_procedimento }}listar"
+    name: Listar Procedimento
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_e82566f2d69945efa666806806e06a7e
+    authentication: {}
+    metaSortKey: -1625250249212
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ee18320cb564cf5ada6c72411f8752b
+    parentId: fld_706e5e972e0f4364871f1eb887b81450
+    modified: 1622115817574
+    created: 1622115757077
+    url: "{{ _.petshop_especie }}select"
+    name: Select Espécie
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_8997787b0d4d4ccebaf40e204d6cc331
+    authentication: {}
+    metaSortKey: -1622115757077
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_706e5e972e0f4364871f1eb887b81450
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1622115708904
+    created: 1622115708904
+    name: PetShop - Espécies
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1622115708904
+    _type: request_group
+  - _id: req_3be8c62d59cb4e64bd6e329fe06c55cc
+    parentId: fld_6e4953eb2fbc45cb951c676d45862389
+    modified: 1622125852395
+    created: 1622048857435
+    url: "{{ _.petshop_raca }}select/1"
+    name: Select Raça
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_0eba231c38d84b729cef4b885fc310f9
+    authentication: {}
+    metaSortKey: -1622048857435
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_6e4953eb2fbc45cb951c676d45862389
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1622048777100
+    created: 1622048777100
+    name: PetShop - Raças
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1622048777100
+    _type: request_group
+  - _id: req_331b081bb98340f1b2ab2aa9fde52f5f
+    parentId: fld_3adc822e17124908bf4b140de86af251
+    modified: 1623332655418
+    created: 1618515075952
+    url: "{{ _.petshop_pet }}cadastro"
+    name: Cadastro Pets
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Teste",
+        	"raca": 1,
+        	"especie": 2,
+        	"data_nascimento": "2020-12-24",
+        	"peso": "20Kg",
+        	"sexo": "Fêmea",
+        	"imagem": "",
+        	"descricao": "",
+        	"user_id": "1"
+        }
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        id: pair_a01615aee43a4075972645c0a67cb05d
+      - name: Content-Type
+        value: application/json
+        id: pair_5aacfc0d037c4cc0b57a7b90b673de01
+    authentication: {}
+    metaSortKey: -1623262916340
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3adc822e17124908bf4b140de86af251
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1618515062408
+    created: 1618515062408
+    name: PetShop - Pets
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1618515062408
+    _type: request_group
+  - _id: req_21a46ce66aa746b8a0e8bbf1b16cb3e8
+    parentId: fld_3adc822e17124908bf4b140de86af251
+    modified: 1623332651587
+    created: 1618522837562
+    url: "{{ _.petshop_pet }}listar"
+    name: Listar Pets
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_bab2be97d59a4841a743bbc010503f02
+    authentication: {}
+    metaSortKey: -1623262916290
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7b4fb88f0e1f4c9ab964e7c813f81aaa
+    parentId: fld_3adc822e17124908bf4b140de86af251
+    modified: 1623332625597
+    created: 1623262916240
+    url: "{{ _.petshop_pet }}editar/1"
+    name: Editar Pet
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	
+        }
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        id: pair_899df833f55743cba2d150dabb24afca
+      - name: Content-Type
+        value: application/json
+        id: pair_2f47c0d6f7954b18bd1148cb97e873a3
+    authentication: {}
+    metaSortKey: -1623262916240
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7d191db8ac5a46af8f4d5916d0e42314
+    parentId: fld_3adc822e17124908bf4b140de86af251
+    modified: 1623332644939
+    created: 1623332637193
+    url: "{{ _.petshop_pet }}atualizar/1"
+    name: Atualizar Pet
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	
+        }
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        id: pair_899df833f55743cba2d150dabb24afca
+      - name: Content-Type
+        value: application/json
+        id: pair_2f47c0d6f7954b18bd1148cb97e873a3
+    authentication: {}
+    metaSortKey: -1622689336658.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3c284099c02a4463ac6506b2af7d2a0a
+    parentId: fld_6371340244464ce78c14f53b2aa29000
+    modified: 1625243720526
+    created: 1623266338653
+    url: "{{ _.petshop }}editar"
+    name: Editar Usuário
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Vini"
+        }
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        id: pair_97c8c8b99a054e00b3361aafefa580ed
+    authentication: {}
+    metaSortKey: -1623266338704
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_6371340244464ce78c14f53b2aa29000
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1618513115926
+    created: 1618513027081
+    name: PetShop - Sistema
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1618513027081
+    _type: request_group
+  - _id: req_8dbcf42f03f448e08bfe1d8eed0b8736
+    parentId: fld_6371340244464ce78c14f53b2aa29000
+    modified: 1618515029515
+    created: 1618514999293
+    url: "{{ _.petshop }}user"
+    name: Usuário Logado
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: Authorization
+        value: "{{ _.token }}"
+        description: ""
+        id: pair_96454f26611f45aa849525c27a84fa61
+    authentication: {}
+    metaSortKey: -1618514999293
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ebb11cf5ff0d41c0ba19e8326d1e7766
+    parentId: fld_6371340244464ce78c14f53b2aa29000
+    modified: 1625243544340
+    created: 1618513143366
+    url: "{{ _.petshop }}cadastro"
+    name: Cadastro
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "André",
+        	"tipo": 1,
+        	"email": "andre@petshop.com",
+        	"password": "123456789",
+        	"password_confirmation": "123456789"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_a28c8a218fd149a6b2d0cd9eff7a3b10
+    authentication: {}
+    metaSortKey: -1618513143366
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_140ec7a30bef4b3190c8687f9619d203
+    parentId: fld_6371340244464ce78c14f53b2aa29000
+    modified: 1621953827431
+    created: 1618513066861
+    url: "{{ _.petshop }}login"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: email
+          value: vinicius@petshop.com
+          id: pair_8b9c9d91840f4c02a6a0c7f38376cd1c
+        - name: password
+          value: "123456789"
+          description: ""
+          id: pair_3ef3ffc4c85641d382a53fb301209310
+    parameters: []
+    headers:
+      - name: ""
+        value: ""
+        id: pair_b982303c38ca4857a61a1d0341113e9c
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_ff3d0c70bf5f49fa9fa33bb8d1e26d9a
+    authentication: {}
+    metaSortKey: -1618513066861
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_00a7fd17063d7c02a9b72fae6fbe8cdc6ea7070c
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1618512420896
+    created: 1618512420896
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1618512420896
+    _type: environment
+  - _id: jar_00a7fd17063d7c02a9b72fae6fbe8cdc6ea7070c
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1618512420900
+    created: 1618512420900
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_c43b670fb92e454596c0cb8f19d4a3c6
+    parentId: wrk_bf1fed32d2ea410c80ecb1520bb66222
+    modified: 1618512420695
+    created: 1618512420695
+    fileName: Projeto Pet
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_0e34a7c6cf0c4e66b63c76ad0351435c
+    parentId: env_00a7fd17063d7c02a9b72fae6fbe8cdc6ea7070c
+    modified: 1625250765653
+    created: 1618512871499
+    name: Projeto_PetShop
+    data:
+      petshop: localhost:8000/api/
+      petshop_pet: localhost:8000/api/pet/
+      petshop_raca: localhost:8000/api/raca/
+      petshop_vacina: localhost:8000/api/vacina/
+      petshop_especie: localhost:8000/api/especie/
+      petshop_procedimento: localhost:8000/api/procedimento/
+      token: Bearer {% response 'body', 'req_140ec7a30bef4b3190c8687f9619d203',
+        'b64::JC51c3VhcmlvLnRva2Vu::46b', 'never', 60 %}
+    dataPropertyOrder:
+      "&":
+        - petshop
+        - petshop_pet
+        - petshop_raca
+        - petshop_vacina
+        - petshop_especie
+        - petshop_procedimento
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1618512871499
+    _type: environment
