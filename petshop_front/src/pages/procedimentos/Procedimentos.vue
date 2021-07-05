@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <label>PET</label>
-                                <select class="browser-default" v-model="pet" @change="pets_select()">
+                                <select class="browser-default" v-model="pet">
                                     <option value="" disabled selected></option>
                                     <option v-for="pet in pet_selecionado" v-bind:value="pet.id">
                                         {{ pet.nome }}
@@ -210,10 +210,11 @@ export default {
         pets_select: function () {
             var self = this
 
-            self.$http.get(self.$urlApi + 'pet/select/4',
+            self.$http.get(self.$urlApi + 'pet/select/' + self.pet.id,
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
+                        console.log(response.data.pets)
                         self.pet_selecionado = response.data.pets
                     } else
                         sweetAlert(response.data.erro)
