@@ -143,8 +143,8 @@ export default {
             descricao_cirurgica: '',
 
             pet: false,
-            castrado: false,
-            cirurgia: false,
+            castrado: null,
+            cirurgia: null,
             banho_tosa: null,
 
             pet_selecionado: [],
@@ -214,7 +214,6 @@ export default {
                 {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                 .then(function (response) {
                     if (response.data.status) {
-                        console.log(response.data.pets)
                         self.pet_selecionado = response.data.pets
                     } else
                         sweetAlert(response.data.erro)

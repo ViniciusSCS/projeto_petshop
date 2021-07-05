@@ -30,6 +30,7 @@ class Pet extends Model
         'user_id',
         'especie_id',
         'data_nascimento',
+        'data_falecimento',
     ];
 
     public function especie()

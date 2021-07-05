@@ -118,6 +118,7 @@ export default {
             peso: '',
             especie: '',
             data_nascimento: '',
+            data_falecimento: '',
             currentRoute: window.location.pathname,
 
             pet: false,
@@ -138,6 +139,7 @@ export default {
                     sexo: self.sexo,
                     peso: self.peso,
                     data_nascimento: self.data_nascimento,
+                    data_falecimento: self.data_falecimento,
                     usuario: self.$store.getters.getUsuario
                 }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                     .then(function (response) {
@@ -184,6 +186,7 @@ export default {
                     sexo: self.sexo,
                     peso: self.peso,
                     data_nascimento: self.data_nascimento,
+                    data_falecimento: self.data_falecimento,
                     usuario: self.$store.getters.getUsuario
                 }, {"headers": {"authorization": "Bearer " + self.$store.getters.getToken}})
                     .then(function (response) {
@@ -237,6 +240,7 @@ export default {
             self.peso = ''
             self.especie = ''
             self.data_nascimento = ''
+            self.data_falecimento = ''
         },
 
         especies_select: function () {

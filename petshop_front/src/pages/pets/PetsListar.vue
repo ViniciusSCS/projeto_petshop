@@ -29,7 +29,7 @@
                                 <td>{{ pet.nome }}</td>
                                 <td>{{ pet.especie.descricao }}</td>
                                 <td>{{ pet.raca.descricao }}</td>
-                                <td>{{ pet.data_nascimento }}</td>
+                                <td>{{ pet.data_nascimento }}  {{ pet.data_falecimento ? " - " + pet.data_falecimento : "" }}</td>
                                 <td>{{ pet.idade }}</td>
                                 <td>
                                     <botao tipo_icone="fas"

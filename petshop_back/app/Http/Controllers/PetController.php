@@ -48,6 +48,7 @@ class PetController extends Controller
         $pet->user_id = $data['usuario']['id'];
         $pet->especie_id = $data['especie'];
         $pet->data_nascimento = $data['data_nascimento'];
+        $pet->data_falecimento = $data['data_falecimento'];
 
         $pet->save();
 
@@ -112,6 +113,7 @@ class PetController extends Controller
         $query = Pet::select(
             '*',
             DB::raw("date_format(data_nascimento, '%d/%m/%Y') as data_nascimento"),
+            DB::raw("date_format(data_falecimento, '%d/%m/%Y') as data_falecimento"),
             DB::raw("
                 CONCAT(
                     FLOOR(( DATE_FORMAT(NOW(),'%Y%m%d') - DATE_FORMAT(data_nascimento,'%Y%m%d'))/10000), ' ano(s) ',

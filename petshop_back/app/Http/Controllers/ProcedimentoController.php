@@ -48,7 +48,9 @@ class ProcedimentoController extends Controller
      */
     public function list(Request $request)
     {
-        $query = Procedimento::with('dono_pet')->get();
+        $query = Procedimento::with('dono_pet')
+            ->with('veterinario_pet')
+            ->get();
 
         return ['status' => true, "procedimento" => $query];
 
