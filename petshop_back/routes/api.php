@@ -25,8 +25,11 @@ Route::post('/login', [UsuarioController::class, 'login']);
 Route::post('/cadastro', [UsuarioController::class, 'cadastro']);
 
 Route::middleware('auth:api')->group(function (){
-    Route::get('/user', [UsuarioController::class, 'usuario']);
-    Route::put('/editar', [UsuarioController::class, 'editar']);
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UsuarioController::class, 'usuario']);
+        Route::put('/editar', [UsuarioController::class, 'editar']);
+    });
+
     Route::get('/vacina/select', [VacinaController::class, 'select']);
     Route::get('/raca/select/{id}', [RacaController::class, 'select']);
     Route::get('/especie/select', [EspecieController::class, 'select']);
