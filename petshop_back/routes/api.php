@@ -30,10 +30,6 @@ Route::middleware('auth:api')->group(function (){
         Route::put('/editar', [UsuarioController::class, 'editar']);
     });
 
-    Route::get('/vacina/select', [VacinaController::class, 'select']);
-    Route::get('/raca/select/{id}', [RacaController::class, 'select']);
-    Route::get('/especie/select', [EspecieController::class, 'select']);
-
     Route::prefix('pet')->group(function() {
         Route::get('/listar', [PetController::class, 'listar']);
         Route::get('/editar/{id}', [PetController::class, 'editar']);
@@ -46,6 +42,10 @@ Route::middleware('auth:api')->group(function (){
         Route::get('/listar', [ProcedimentoController::class, 'list']);
         Route::post('/cadastro', [ProcedimentoController::class, 'create']);
     });
+
+    Route::get('/vacina/select', [VacinaController::class, 'select']);
+    Route::get('/raca/select/{id}', [RacaController::class, 'select']);
+    Route::get('/especie/select', [EspecieController::class, 'select']);
 });
 
 
