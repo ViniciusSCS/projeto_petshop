@@ -23,21 +23,27 @@ use App\Http\Controllers\{
 
 Route::post('/login', [UsuarioController::class, 'login']);
 Route::post('/cadastro', [UsuarioController::class, 'cadastro']);
-Route::middleware('auth:api')->get('/user', [UsuarioController::class, 'usuario']);
-Route::middleware('auth:api')->put('/editar', [UsuarioController::class, 'editar']);
 
-Route::middleware('auth:api')->get('/pet/listar', [PetController::class, 'listar']);
-Route::middleware('auth:api')->get('/pet/editar/{id}', [PetController::class, 'editar']);
-Route::middleware('auth:api')->get('/pet/select/{id}', [PetController::class, 'select']);
-Route::middleware('auth:api')->post('/pet/cadastro', [PetController::class, 'cadastro']);
-Route::middleware('auth:api')->post('/pet/atualizar/{id}', [PetController::class, 'atualizar']);
+Route::middleware('auth:api')->group(function (){
+    Route::get('/user', [UsuarioController::class, 'usuario']);
+    Route::put('/editar', [UsuarioController::class, 'editar']);
+    Route::get('/vacina/select', [VacinaController::class, 'select']);
+    Route::get('/raca/select/{id}', [RacaController::class, 'select']);
+    Route::get('/especie/select', [EspecieController::class, 'select']);
 
-Route::middleware('auth:api')->get('/raca/select/{id}', [RacaController::class, 'select']);
+    Route::prefix('pet')->group(function() {
+        Route::get('/listar', [PetController::class, 'listar']);
+        Route::get('/editar/{id}', [PetController::class, 'editar']);
+        Route::get('/select/{id}', [PetController::class, 'select']);
+        Route::post('/cadastro', [PetController::class, 'cadastro']);
+        Route::post('/atualizar/{id}', [PetController::class, 'atualizar']);
+    });
 
-Route::middleware('auth:api')->get('/especie/select', [EspecieController::class, 'select']);
+    Route::prefix('procedimento')->group(function () {
+        Route::get('/listar', [ProcedimentoController::class, 'list']);
+        Route::post('/cadastro', [ProcedimentoController::class, 'create']);
+    });
+});
 
-Route::middleware('auth:api')->get('/vacina/select', [VacinaController::class, 'select']);
 
-route::middleware('auth:api')->get('/procedimento/listar', [ProcedimentoController::class, 'list']);
-route::middleware('auth:api')->post('/procedimento/cadastro', [ProcedimentoController::class, 'create']);
 
