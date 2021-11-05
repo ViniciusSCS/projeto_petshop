@@ -95,6 +95,8 @@ class PetController extends Controller
 
         $pet = Pet::find($id);
 
+//        return $pet;
+
         $pet->update($data);
 
         return ['status' => true, "pet" => $pet];
